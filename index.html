@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class="testclass">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+    <link rel="stylesheet" href="./demo.css">
+</head>
+<body>   
+    <div class="main">
+
+        <form action="" method="POST" class="form" id="form-1">
+          <h3 class="heading">Thành viên đăng ký</h3>
+          
+      
+          <div class="spacer"></div>
+      
+          <div class="form-group">
+            <label for="fullname" class="form-label">Tên đầy đủ</label>
+            <input id="fullname" name="fullname" type="text" placeholder="VD: Nam Khánh" class="form-control">
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" name="email" type="text" placeholder="VD: email@domain.com" class="form-control">
+            <span class="form-message"></span>
+          </div>
+      
+          <div class="form-group">
+            <label for="password" class="form-label">Mật khẩu</label>
+            <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
+            <span class="form-message"></span>
+          </div>
+      
+          <div class="form-group">
+            <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
+            <input id="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu" type="password" class="form-control">
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="province" class="form-label">Tỉnh/TP</label>
+            <select id="province" name="province" class="form-control">
+              <option value="">--Chọn Tỉnh/TP--</option>
+              <option value="HCM">--Hồ Chí Minh--</option>
+              <option value="HNI">--Hà Nội--</option>
+              <option value="DNA">--Đà Nẵng--</option>
+            </select>
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="avatar" class="form-label">Ảnh đại diện</label>
+            <input id="avatar" name="avatar" type="file" class="form-control">
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="gender" class="form-label">Giới Tính</label>
+            <div>
+            <input name="gender" type="radio" value="male" class="form-control">
+            Nam
+            </div>
+            <div>
+              <input name="gender" type="radio" value="female" class="form-control">
+              Nữ
+              </div>
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="target" class="form-label">Mục tiêu tham gia học tập</label>
+            <div>
+            <input name="target" type="checkbox" value="hltfe" class="form-control">
+            Học lập trình frontend
+            </div>
+            <div>
+            <input name="target" type="checkbox" value="hltbe" class="form-control">
+            Học lập trình backend
+            </div>
+            <div>
+            <input name="target" type="checkbox" value="hltfs" class="form-control">
+            Học lập trình fullstack
+            </div>
+            <span class="form-message"></span>
+          </div>
+      
+          <button class="form-submit">Đăng ký</button>
+        </form>
+      
+      </div>
+
+        <script src="./validator.js"></script>
+      
+      <script>
+
+Validator ({
+    form: '#form-1',
+    parentClass: '.form-group',
+    erroTag: '.form-message',
+    rules: [
+      Validator.isRequired('#fullname'),
+      Validator.isRequired('#email'),
+      Validator.isRequired('#password'),
+      Validator.isRequired('#password_confirmation'),
+      Validator.isRequired('input[name="gender"]'),
+      Validator.isRequired('input[name="target"]'),
+      Validator.isRequired('#province'),
+      Validator.isRequired('#avatar'),
+      Validator.isEmail('#email'),
+      Validator.minLength('#password', 6),
+      Validator.isConfirm('#password_confirmation', function(){
+        return document.querySelector('#form-1 #password').value;
+      })
+    ],
+    onsubmit: function (data) {
+      console.log(data);
+    }
+  }) 
+       
+      </script>
+</body>
+</html>
